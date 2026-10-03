@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Brain Tumor Classification</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background: #f2f5f9;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            width: 600px;
+            max-width: 90%;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            color: #1f3c88;
+        }
+
+        input {
+            margin: 20px;
+        }
+
+        button {
+            background: #1f3c88;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eef4ff;
+            border-radius: 10px;
+        }
+
+        img {
+            width: 250px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Brain Tumor Classification</h1>
+
+    <p>Upload an MRI image</p>
+
+    <form action="/predict"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="image"
+               accept="image/*"
+               required>
+
+        <br>
+
+        <button type="submit">
+            Predict
+        </button>
+
+    </form>
+
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h2>Prediction Result</h2>
+
+        <h3>{{ prediction }}</h3>
+
+        <p>
+            Confidence: {{ confidence }}%
+        </p>
+
+        <img src="{{ image_path }}">
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
